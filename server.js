@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+let https = require ('https');
 
 var port = 8089;
 
@@ -7,9 +8,10 @@ app.get('/', function (req, res) {
   res.send('Hello World')
 });
 
+// get keys in https://azure.microsoft.com/en-us/try/cognitive-services/my-apis/
 let accessKey  = "9c0bc0190edf451fa24029d7c2419210";
 let uri = 'westcentralus.api.cognitive.microsoft.com';
-let path = '/text/analytics/v2.0/sentiment';
+let path = '/text/analytics/v2.0/keyPhrases';
 
 app.all('/*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -20,6 +22,7 @@ app.all('/*', function(req, res, next) {
 
 app.post('/GetKeyPhrases', function(req, res) {
     
+
     let response_handler = function (response) {
         let body = '';
         response.on ('data', function (d) {
@@ -52,9 +55,10 @@ app.post('/GetKeyPhrases', function(req, res) {
         req.end ();
     }
 
-    var documents = JSON.parse(res.body);
-    res.send( get_sentiments(documents) );
-  
+    console.log(">>>" + req);
+    var documents = JSON.parse(req.body);
+    console.log(documents);
+    //res.send( get_sentiments(documents) );
 });
 
 app.listen(port);
