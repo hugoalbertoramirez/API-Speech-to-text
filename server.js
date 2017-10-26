@@ -9,7 +9,7 @@ app.get('/', function (req, res) {
 });
 
 // get keys in https://azure.microsoft.com/en-us/try/cognitive-services/my-apis/
-let accessKey  = "9c0bc0190edf451fa24029d7c2419210";
+let accessKey  = "0c140e28fe754315b816691babf92e4e";
 let uri = 'westcentralus.api.cognitive.microsoft.com';
 let path = '/text/analytics/v2.0/keyPhrases';
 
@@ -56,8 +56,8 @@ app.post('/GetKeyPhrases', function(req, res) {
     }
 
     console.log(">>>" + req);
-    var documents = JSON.parse(req.body);
-    console.log(documents);
+    //var documents = JSON.parse(req.body);
+    // console.log(documents);
     //res.send( get_sentiments(documents) );
 });
 
